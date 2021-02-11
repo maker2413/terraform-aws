@@ -1,9 +1,8 @@
 terraform {
   backend "s3" {
-    bucket = "squids-tf-states"
-    key = "network/vpc/terraform.tfstate"
+    bucket = "squids-tf-state"
+    key = "us-west-2/vpc.tfstate"
     region = "us-west-2"
     encrypt = true
-    kms_key_id = "tf-s3"
   }
 }
