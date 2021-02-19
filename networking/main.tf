@@ -28,7 +28,7 @@ resource "aws_subnet" "squids_public_subnet" {
 }
 
 resource "aws_subnet" "squids_private_subnet" {
-  count                   = length(var.public_cidrs)
+  count                   = length(var.private_cidrs)
   vpc_id                  = aws_vpc.squids_vpc.id
   cidr_block              = var.private_cidrs[count.index]
   map_public_ip_on_launch = false
