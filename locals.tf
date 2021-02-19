@@ -24,7 +24,7 @@ locals {
         }
       }
       tags = {
-        name = "public_sg"
+        name = "public-sg"
       }
     }
     rds = {
@@ -39,7 +39,7 @@ locals {
         }
       }
       tags = {
-        name = "rds_sg"
+        name = "rds-sg"
       }
     }
   }
