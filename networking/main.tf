@@ -104,4 +104,16 @@ resource "aws_security_group" "squids_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = {
+    Name = each.value.tags.name
+  }
+}
+
+resource "aws_db_subnet_group" "squids_rds_subnetgroup" {
+  count      = var.db_subnet_group ? 1 : 0
+  name       = "squids_rds_subnetgroup"
+  subnet_ids = aws_subnet.squids_private_subnet.*.id
+  tags = {
+    Name = "squids_rds_sng"
+  }
 }

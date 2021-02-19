@@ -23,6 +23,9 @@ locals {
           cidr_blocks = ["0.0.0.0/0"]
         }
       }
+      tags = {
+        name = "public_sg"
+      }
     }
     rds = {
       name        = "rds_sg"
@@ -34,6 +37,9 @@ locals {
           protocol    = "tcp"
           cidr_blocks = [local.vpc_cidr]
         }
+      }
+      tags = {
+        name = "rds_sg"
       }
     }
   }
