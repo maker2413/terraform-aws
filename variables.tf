@@ -20,5 +20,5 @@ variable "dbuser" {
 
 variable "dbpassword" {
   type = string
-  sensitvie = true
+  sensitive = true
 }
