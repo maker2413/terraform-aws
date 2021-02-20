@@ -1,13 +1,13 @@
 # --- loadbalancing/variables.tf ---
 
-variable "public_sg" {
-}
+variable "listener_port" {}
 
-variable "public_subnets" {
-}
+variable "listener_protocol" {}
 
-variable "target_groups" {
-}
+variable "public_sg" {}
 
-variable "vpc_id" {
-}
+variable "public_subnets" {}
+
+variable "target_groups" {}
+
+variable "vpc_id" {}

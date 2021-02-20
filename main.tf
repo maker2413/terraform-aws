@@ -28,9 +28,11 @@ module "networking" {
 # }
 
 module "loadbalancing" {
-  source         = "./loadbalancing"
-  public_sg      = module.networking.public_sg
-  public_subnets = module.networking.public_subnets
-  target_groups  = local.target_groups
-  vpc_id         = module.networking.vpc_id
+  source            = "./loadbalancing"
+  listener_port     = 80
+  listener_protocol = "HTTP"
+  public_sg         = module.networking.public_sg
+  public_subnets    = module.networking.public_subnets
+  target_groups     = local.target_groups
+  vpc_id            = module.networking.vpc_id
 }
