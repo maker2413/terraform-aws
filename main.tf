@@ -36,3 +36,12 @@ module "loadbalancing" {
   target_groups     = local.target_groups
   vpc_id            = module.networking.vpc_id
 }
+
+module "compute" {
+  source         = "./compute"
+  instance_count = var.instance_count
+  instance_type  = var.instance_type
+  public_sg      = module.networking.public_sg
+  public_subnets = module.networking.public_subnets
+  vol_size       = var.vol_size
+}

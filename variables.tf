@@ -24,3 +24,19 @@ variable "dbpassword" {
   type      = string
   sensitive = true
 }
+
+# --- computer variables ---
+variable "instance_count" {
+  type    = number
+  default = 1
+}
+
+variable "instance_type" {
+  type    = string
+  default = "t3.micro"
+}
+
+variable "vol_size" {
+  type    = number
+  default = 10
+}
