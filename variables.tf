@@ -36,6 +36,16 @@ variable "instance_type" {
   default = "t3.micro"
 }
 
+variable "key_name" {
+  type    = string
+  default = "squidskey"
+}
+
+variable "public_key_path" {
+  type    = string
+  default = "/home/epost/.ssh/squidskey.pub"
+}
+
 variable "vol_size" {
   type    = number
   default = 10

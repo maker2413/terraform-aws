@@ -13,6 +13,14 @@ data "aws_ami" "server_ami" {
 resource "random_id" "squids_node_id" {
   byte_length = 2
   count       = var.instance_count
+  keepers = {
+    key_name = var.key_name
+  }
+}
+
+resource "aws_key_pair" "squids_auth" {
+  key_name   = var.key_name
+  public_key = file(var.public_key_path)
 }
 
 resource "aws_instance" "squids_node" {
@@ -23,10 +31,10 @@ resource "aws_instance" "squids_node" {
     Name = "squids-node-${random_id.squids_node_id[count.index].dec}"
   }
 
-  # key_name = ""
+  key_name               = aws_key_pair.squids_auth.id
   vpc_security_group_ids = [var.public_sg]
   subnet_id              = var.public_subnets[count.index]
-  # user_data = ""
+  # user_data =
   root_block_device {
     volume_size = var.vol_size # 10
   }
