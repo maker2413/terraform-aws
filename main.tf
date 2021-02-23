@@ -13,19 +13,19 @@ module "networking" {
   db_subnet_group  = true
 }
 
-# module "database" {
-#   source                 = "./database"
-#   db_storage             = 10
-#   db_engine_version      = "5.7.22"
-#   db_instance_class      = "db.t2.micro"
-#   dbname                 = var.dbname
-#   dbuser                 = var.dbuser
-#   dbpassword             = var.dbpassword
-#   db_identifier          = "squids-db"
-#   skip_db_snapshot       = true
-#   db_subnet_group_name   = module.networking.db_subnet_group_name[0]
-#   vpc_security_group_ids = module.networking.db_security_group
-# }
+module "database" {
+  source                 = "./database"
+  db_storage             = 10
+  db_engine_version      = "5.7.22"
+  db_instance_class      = "db.t2.micro"
+  dbname                 = var.dbname
+  dbuser                 = var.dbuser
+  dbpassword             = var.dbpassword
+  db_identifier          = "squids-db"
+  skip_db_snapshot       = true
+  db_subnet_group_name   = module.networking.db_subnet_group_name[0]
+  vpc_security_group_ids = module.networking.db_security_group
+}
 
 module "loadbalancing" {
   source            = "./loadbalancing"
@@ -39,11 +39,16 @@ module "loadbalancing" {
 
 module "compute" {
   source          = "./compute"
+  db_endpoint     = module.database.db_endpoint
+  dbname          = var.dbname
+  dbpassword      = var.dbpassword
+  dbuser          = var.dbuser
   instance_count  = var.instance_count
   instance_type   = var.instance_type
   key_name        = var.key_name
   public_key_path = var.public_key_path
   public_sg       = module.networking.public_sg
   public_subnets  = module.networking.public_subnets
+  user_data_path  = "${path.root}/userdata.tpl"
   vol_size        = var.vol_size
 }

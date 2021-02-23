@@ -34,8 +34,15 @@ resource "aws_instance" "squids_node" {
   key_name               = aws_key_pair.squids_auth.id
   vpc_security_group_ids = [var.public_sg]
   subnet_id              = var.public_subnets[count.index]
-  # user_data =
+  user_data = templatefile(var.user_data_path, {
+    nodename    = "squids-node-${random_id.squids_node_id[count.index].dec}"
+    db_endpoint = var.db_endpoint
+    dbuser      = var.dbuser
+    dbpass      = var.dbpassword
+    dbname      = var.dbname
+    }
+  )
   root_block_device {
-    volume_size = var.vol_size # 10
+    volume_size = var.vol_size
   }
 }
