@@ -22,6 +22,12 @@ locals {
           protocol    = "tcp"
           cidr_blocks = ["0.0.0.0/0"]
         }
+        nginx = {
+          from        = 8080
+          to          = 8080
+          protocol    = "tcp"
+          cidr_blocks = ["0.0.0.0/0"]
+        }
       }
       tags = {
         name = "public-sg"

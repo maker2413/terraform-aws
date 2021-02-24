@@ -6,7 +6,7 @@ data "aws_ami" "server_ami" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
   }
 }
 
@@ -45,4 +45,11 @@ resource "aws_instance" "squids_node" {
   root_block_device {
     volume_size = var.vol_size
   }
+}
+
+resource "aws_lb_target_group_attachment" "squids_tg_attach" {
+  count            = var.instance_count
+  target_group_arn = var.lb_target_group_arn
+  target_id        = aws_instance.squids_node[count.index].id
+  port             = 8080
 }
