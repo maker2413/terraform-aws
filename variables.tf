@@ -46,6 +46,11 @@ variable "public_key_path" {
   default = "/home/epost/.ssh/squidskey.pub"
 }
 
+variable "tg_port" {
+  type    = number
+  default = 8080
+}
+
 variable "vol_size" {
   type    = number
   default = 10

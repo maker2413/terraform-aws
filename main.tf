@@ -50,6 +50,7 @@ module "compute" {
   public_key_path     = var.public_key_path
   public_sg           = module.networking.public_sg
   public_subnets      = module.networking.public_subnets
+  tg_port             = var.tg_port
   user_data_path      = "${path.root}/userdata.tpl"
   vol_size            = var.vol_size
 }

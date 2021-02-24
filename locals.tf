@@ -54,7 +54,7 @@ locals {
 locals {
   target_groups = {
     squids_tg = {
-      port     = 80
+      port     = 8080
       protocol = "HTTP"
       health_check = {
         healthy_threshold   = 2

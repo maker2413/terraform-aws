@@ -11,5 +11,6 @@ variable "lb_target_group_arn" {}
 variable "public_key_path" {}
 variable "public_sg" {}
 variable "public_subnets" {}
+variable "tg_port" {}
 variable "user_data_path" {}
 variable "vol_size" {}
