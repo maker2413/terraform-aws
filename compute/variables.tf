@@ -8,6 +8,7 @@ variable "instance_count" {}
 variable "instance_type" {}
 variable "key_name" {}
 variable "lb_target_group_arn" {}
+variable "private_key_path" {}
 variable "public_key_path" {}
 variable "public_sg" {}
 variable "public_subnets" {}

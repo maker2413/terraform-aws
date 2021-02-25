@@ -47,6 +47,7 @@ module "compute" {
   instance_type       = var.instance_type
   key_name            = var.key_name
   lb_target_group_arn = module.loadbalancing.lb_target_group_arn
+  private_key_path    = "/home/epost/.ssh/squidskey"
   public_key_path     = var.public_key_path
   public_sg           = module.networking.public_sg
   public_subnets      = module.networking.public_subnets
