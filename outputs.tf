@@ -10,6 +10,6 @@ output "instances" {
 }
 
 output "kubeconfig" {
-  value = [for i in module.compute.instance : "export KUBECONFIG=../k3s-${i.tags.Name}.yaml"]
+  value     = [for i in module.compute.instance : "export KUBECONFIG=../k3s-${i.tags.Name}.yaml"]
   sensitive = true
 }
